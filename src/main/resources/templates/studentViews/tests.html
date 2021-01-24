@@ -1,0 +1,100 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Testy</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/style.css}" type="text/css" />
+
+</head>
+<body th:style="'background-color: #2C4A36'">
+<nav
+        class="navbar navbar-expand-lg navbar-light bg-light d-flex justify-content-end">
+
+    <div class="flex-fill">
+        <h2>FEEDBACK</h2>
+    </div>
+    <a class="navbar-brand" href="/student/profile">Mój profil</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+            <a class="navbar-brand" href="#">Testy</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="#">Rozmowy <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="#">Kurs <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="/student/projects">Projekty <span class="sr-only">(current)</span></a>
+        </li>
+    </ul>
+
+    <div class="ml-5">
+        <strong>Zalogowany użytkownik:</strong> <span
+            th:text="${#authentication.getPrincipal().getUsername()}"></span> <a
+            href="/logout"><button type="button" class="btn btn-primary">WYLOGUJ</button></a>
+    </div>
+
+</nav>
+
+
+<div class="page">
+    <div class="container list mt-2">
+        <h3 class="title">Moje testy</h3>
+        <nav class="navbar justify-content-end">
+            <a th:href="@{/student/tests/new}"><button type="button"
+                                                         class="btn btn-primary mr-3 mb-2">Nowy</button></a>
+            <a
+                th:href="@{/student/tests/archived}"><button type="button"
+                                                        class="btn btn-outline-secondary mr-3 mb-2">Zarchiwizowane
+            testy</button></a>
+        </nav>
+
+
+
+        <div class="table-responsive ">
+            <table class="table table-hover table-sm">
+                <thead>
+                <tr class="table-primary">
+                    <th>Id</th>
+                    <th>Temat</th>
+                    <th>Data</th>
+                    <th>Godzina</th>
+                    <th>Wynik
+                </thead>
+                <tbody >
+                <tr th:each="dto:${tests}">
+                    <td th:text="${dto.id}"/>
+                    <td th:text="${dto.test.topic}" />
+                    <td th:text="${#dates.format(dto.dateTime,'dd.MM.yyyy')}"/>
+                    <td th:text="${#dates.format(dto.dateTime,'HH:mm')}"  />
+                    <td th:text="${dto.result}" />
+                    <td>   <a
+                            th:href="@{/student/tests/details(id_test=${dto.id})}"><button type="button"
+                                                                    class="btn btn-primary mr-3 mb-2">Szczegóły</button></a></td>
+                    <td>
+
+                        <a
+                                th:href="@{/student/tests/archive(id_test=${dto.id})}"><button type="button"
+                                                                        class="btn btn-danger mr-3 mb-2">Archiwizuj</button></a></td>
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+</div>
+</body>
+
+</HTML>

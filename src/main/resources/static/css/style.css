@@ -1,0 +1,17 @@
+.list{
+	background-color:white;
+	opacity:0.9;
+}
+
+.form{
+	 max-width:40rem;
+}
+.title{
+	float:left;
+}
+
+.errorField{
+
+	  color:red;
+
+}

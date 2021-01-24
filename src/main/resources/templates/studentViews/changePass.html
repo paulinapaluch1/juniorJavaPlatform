@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Zmiana hasła</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/style.css}" type="text/css" />
+
+</head>
+<body th:style="'background-color: #2C4A36'">
+<nav
+        class="navbar navbar-expand-lg navbar-light bg-light d-flex justify-content-end">
+
+    <div class="flex-fill">
+        <h2>FEEDBACK</h2>
+    </div>
+    <a class="navbar-brand" href="/student/profile">Mój profil</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+            <a class="nav-link" href="#">Testy <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="#">Rozmowy <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="#">Kurs <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="/student/projects">Projekty <span class="sr-only">(current)</span></a>
+        </li>
+    </ul>
+
+    <div class="ml-5">
+        <strong>Zalogowany użytkownik:</strong> <span
+            th:text="${#authentication.getPrincipal().getUsername()}"></span> <a
+            href="/logout"><button type="button" class="btn btn-primary">WYLOGUJ</button></a>
+    </div>
+
+</nav>
+
+
+<div class="page">
+    <div class="container list pt-3 pb-3 form mt-2">
+
+        <h3>ZMIEŃ HASŁO</h3>
+        <div>
+            <form action="#" th:action="@{/student/checkPassword}"
+                  th:object="${pchanger}" method="GET">
+                Stare hasło
+                <input th:field=*{oldPassword} class="form-control mb-2 col-4" type="password" />
+                <p class="errorField" th:if="${oldPaswordProblem}" th:text="${oldPaswordProblem}"></p>
+                Nowe hasło
+                <input th:field=*{newPassword}  class="form-control mb-2 col-4"  type="password" />
+
+                Powtórz hasło
+                <input th:field=*{repeatedPassword} class="form-control mb-2 col-4" type="password" />
+                <p class="errorField" th:if="${differentPasswords}" th:text="${differentPasswords}"></p>
+
+                <button type="submit" class="btn btn-info col-2 mt-1">ZAPISZ</button>
+                <a th:href="@{/student/profile}" class="btn btn-danger col-2 mt-1">ANULUJ</a>
+            </form>
+        </div>
+</div>
+</body>
+
+</HTML>

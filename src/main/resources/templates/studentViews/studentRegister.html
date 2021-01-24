@@ -1,0 +1,140 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Zaloguj się</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+
+    <link rel="stylesheet" th:href="@{/css/style.css}" type="text/css"/>
+</head>
+<body th:style="'background-color: #2C4A36'" th:style="'background-color: #2C4A36'">
+
+
+<nav style="opacity:0.9"
+     class="navbar navbar-expand-lg navbar-light bg-light d-flex justify-content-end">
+    <div class=" flex-fill"></div>
+    <div class="flex-fill">
+        <h2>Zostań Junior Java Developerem</h2>
+    </div>
+</nav>
+
+<div class="page">
+    <div class="container list pt-3 pb-3 form mt-2">
+
+        <h3>Rejestracja</h3>
+
+        <form action="#" th:action="@{/student/saveregister}"
+              th:object="${dto}" method="POST">
+
+            <div class="row">
+                <div class="col">
+                    Imię: <input th:field="*{name}"
+                                 type="text" class="form-control col-10">
+                    <span
+                            th:if="${#fields.hasErrors('name')}" class="errorField"
+                            th:errors="*{name}"/></div>
+
+                <div class="col">Nazwisko: <input type="text" th:field="*{surname}"
+                                                  class="form-control col-10">
+                    <span
+                            th:if="${#fields.hasErrors('surname')}" class="errorField"
+                            th:errors="*{surname}"/></div>
+
+            </div>
+            <div class="row">
+                <div class="col">
+                   Login: <input type="text" th:field="*{login}"
+                                   class="form-control col-10">
+                    <span
+                            th:if="${#fields.hasErrors('login')}" class="errorField"
+                            th:errors="*{login}"/>
+                </div>
+                <div class="col">
+                    Password: <input
+                        type="password" th:field="*{password}"
+                        class="form-control col-10">
+                    <span
+                            th:if="${#fields.hasErrors('password')}" class="errorField"
+                            th:errors="*{password}"/>
+                </div>
+            </div>
+
+            <div class="row">
+
+                <div class="col">
+                    E-mail: <input type="text" th:field="*{email}"
+                                   class="form-control col-10">
+                    <span
+                            th:if="${#fields.hasErrors('email')}" class="errorField"
+                            th:errors="*{email}"/>
+                </div>
+                <div class="col">
+                    Telefon: <input
+                        type="text" th:field="*{phone}"
+                        class="form-control col-10">
+                    <span
+                            th:if="${#fields.hasErrors('phone')}" class="errorField"
+                            th:errors="*{phone}"/>
+                </div>
+            </div>
+
+
+
+            <div class="row">
+
+                <div class="col">
+                    Miasto: <input type="text" th:field="*{city}"
+                                   class="form-control col-10">
+                    <span
+                            th:if="${#fields.hasErrors('city')}" class="errorField"
+                            th:errors="*{city}"/>
+                </div>
+                <div class="col">
+                    Strona internetowa: <input
+                        type="text" th:field="*{webpage}"
+                        class="form-control col-10">
+                    <span
+                            th:if="${#fields.hasErrors('webpage')}" class="errorField"
+                            th:errors="*{webpage}"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+
+                    Opis: <input th:field="*{description}"
+                                 type="text"  class="form-control col-10">
+                    <span
+                            th:if="${#fields.hasErrors('description')}" class="errorField"
+                            th:errors="*{description}"/>
+                </div>
+                <div class="col">
+
+                    Uczelnia/Firma: <input type="text" th:field="*{institution}"
+                                           class="form-control col-10">
+                    <span
+                            th:if="${#fields.hasErrors('institution')}" class="errorField"
+                            th:errors="*{institution}"/>
+                </div>
+            </div>
+
+
+            <div class="form-actions mb-2" style="margin-top: 12px;">
+                <button type="submit" class="btn btn-success">ZAŁÓŻ KONTO</button>
+            </div>
+        </form>
+
+       Masz już konto?
+        <div class="form-actions">
+            <a th:href="@{/login}">
+                <button class="btn btn-success">ZALOGUJ SIĘ</button>
+            </a>
+        </div>
+    </div>
+</div>
+
+
+
+</body>
+</html>
